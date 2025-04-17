@@ -1,9 +1,10 @@
-// Write your code here
 import {Component} from 'react'
+import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import 'react-loader-spinner/dist/loader/css/react-spinner-loader.css'
 import LatestMatch from '../LatestMatch'
 import MatchCard from '../MatchCard'
+import MatchStatistics from '../MatchStatistics'
 import './index.css'
 
 class TeamMatches extends Component {
@@ -23,6 +24,7 @@ class TeamMatches extends Component {
     const {params} = match
     const {id} = params
     const response = await fetch(`https://apis.ccbp.in/ipl/${id}`)
+
     const data = await response.json()
     const teamBannerData = {
       teamBannerUrl: data.team_banner_url,
@@ -37,6 +39,7 @@ class TeamMatches extends Component {
       secondInnings: data.latest_match_details.second_innings,
       manOfTheMatch: data.latest_match_details.man_of_the_match,
       umpires: data.latest_match_details.umpires,
+      latestMatchStatus: data.latest_match_details.match_status,
     }
     const recentMatchData = data.recent_matches.map(eachMatch => ({
       id: eachMatch.id,
@@ -61,6 +64,36 @@ class TeamMatches extends Component {
       isLoading,
     } = this.state
     const {teamBannerUrl} = bannerDetails
+    const matchStatus = {
+      won: 0,
+      lost: 0,
+      drawn: 0,
+    }
+    recentMatchDetails.forEach(eachMatch => {
+      const status = eachMatch.matchStatus
+      if (status === 'Won') {
+        matchStatus.won += 1
+      } else if (status === 'Lost') {
+        matchStatus.lost += 1
+      } else {
+        matchStatus.drawn += 1
+      }
+    })
+
+    if (latestMatchDetails.latestMatchStatus === 'Won') {
+      matchStatus.won += 1
+    } else if (latestMatchDetails.latestMatchStatus === 'Lost') {
+      matchStatus.lost += 1
+    } else {
+      matchStatus.drawn += 1
+    }
+
+    const pieChartData = [
+      {name: 'Won', status: matchStatus.won},
+      {name: 'Lost', status: matchStatus.lost},
+      {name: 'Drawn', status: matchStatus.drawn},
+    ]
+
     const {match} = this.props
     const {params} = match
     const {id} = params
@@ -102,11 +135,20 @@ class TeamMatches extends Component {
           </div>
         ) : (
           <div>
+            <div>
+              <Link to="/">
+                <button className="back-btn" type="button">
+                  Back
+                </button>
+              </Link>
+            </div>
             <img
               className="banner-image"
               src={teamBannerUrl}
               alt="team banner"
             />
+            <MatchStatistics pieChartData={pieChartData} />
+
             <p className="latest">Latest Matches</p>
             <LatestMatch latestMatchDetails={latestMatchDetails} />
             <ul className="match-cards-container">
