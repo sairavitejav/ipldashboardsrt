@@ -4,12 +4,6 @@ import './index.css'
 const MatchStatistics = props => {
   const {pieChartData} = props
 
-  const COLORS = {
-    Won: '#28a745',
-    Lost: '#dc3545',
-    Drawn: '#ffc107',
-  }
-
   return (
     <div className="chart-container">
       <PieChart height={500} width={500}>
