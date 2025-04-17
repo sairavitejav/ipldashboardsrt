@@ -1,0 +1,33 @@
+/* Write your CSS here */
+.latest-match-container {
+  background-color: #1e293b;
+  width: 100%;
+  padding: 40px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+@media screen and (max-width: 767px) {
+  .latest-match-container {
+    flex-direction: column;
+  }
+}
+.shudule-container {
+  color: #ffffff;
+}
+.opponent-logo {
+  width: 300px;
+}
+.result-head {
+  color: #ffffff;
+  font-size: 15px;
+  font-weight: bold;
+  text-align: end;
+}
+.result-name {
+  color: #ffffff;
+  font-size: 10px;
+  font-weight: bold;
+  text-align: end;
+}

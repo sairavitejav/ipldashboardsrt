@@ -1,0 +1,27 @@
+/* Write your CSS here */
+.each-team-container {
+  list-style-type: none;
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  margin-right: 10px;
+  margin-top: 10px;
+  background-color: #ffffff33;
+  border: 1px solid #ffffff;
+  border-radius: 10px;
+  width: 400px;
+  height: 150px;
+}
+.team-image {
+  width: 80px;
+  margin-right: 10px;
+}
+.team-name {
+  color: #ffffff;
+  font-size: 30px;
+  width: 260px;
+  text-align: center;
+}
+.link-container {
+  text-decoration: none;
+}

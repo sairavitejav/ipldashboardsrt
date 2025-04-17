@@ -1,0 +1,37 @@
+/* Write your CSS here */
+.match-card-container {
+  list-style-type: none;
+  background-color: #1e293b;
+  border-radius: 15px;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-right: 10px;
+  margin-top: 10px;
+  color: #ffffff;
+  width: 350px;
+  height: 500px;
+}
+.card-image {
+  width: 150px;
+  height: 150px;
+  margin-bottom: 20px;
+}
+.name {
+  font-size: 20px;
+  margin-bottom: 20px;
+}
+.mat-res {
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-align: center;
+}
+.won-mat-stat {
+  font-size: 25px;
+  color: #18ed66;
+}
+.lost-mat-stat {
+  font-size: 25px;
+  color: #e31a1a;
+}
